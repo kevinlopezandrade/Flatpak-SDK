@@ -1,0 +1,86 @@
+{
+    "build-runtime":true,
+    "id":"com.kevlopez.Sdk",
+    "runtime":"org.gnome.Platform",
+    "sdk":"org.gnome.Sdk",
+    "metadata":"metadata.sdk",
+    "cleanup":[
+        "/cache",
+        "/man",
+        "/share/man"
+    ],
+    "build-options":{
+        "cflags":"-O2 -g ",
+        "cxxflags":"-O2 -g ",
+        "env":{
+            "V":"1"
+        }
+    },
+    "modules":[
+        {
+            "name": "vim",
+            "buildsystem": "autotools",
+            "config-opts":[
+                "--disable-gui",
+                "--with-features=huge",
+                "--enable-gpm",
+                "--enable-acl",
+                "--with-x=yes",
+                "--disable-netbeans",
+                "--enable-multibyte",
+                "--enable-cscope",
+                "--enable-pythoninterp=dynamic",
+                "--enable-python3interp=dynamic",
+                "--enable-rubyinterp=dynamic"
+            ],
+            "sources":[
+                {
+                    "type": "git",
+                    "url": "git://github.com/vim/vim.git"
+                }
+            ]
+
+        },
+        {
+            "name":"cgdb",
+            "buildsystem":"autotools",
+            "sources":[
+                {
+                    "type":"git",
+                    "url":"git://github.com/cgdb/cgdb.git"
+                }
+            ]
+        },
+        {
+            "name":"clear",
+            "buildsystem":"simple",
+            "build-commands":[
+                "install -m755 clear /usr/bin/"
+            ],
+            "sources":[
+                {
+                    "type":"file",
+                    "path":"./scripts/clear"
+                }
+            ]
+        },
+        {
+            "name":"os-release",
+            "sources":[
+                {
+                    "type":"file",
+                    "path":"os-release"
+                },
+                {
+                    "type":"file",
+                    "path":"issue"
+                },
+                {
+                    "type":"file",
+                    "path":"os-release-configure",
+                    "dest-filename":"configure"
+                }
+            ]
+        }
+    ]
+}
