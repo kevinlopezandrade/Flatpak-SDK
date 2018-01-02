@@ -3,6 +3,7 @@
     "id":"com.kevlopez.Sdk",
     "runtime":"org.gnome.Platform",
     "sdk":"org.gnome.Sdk",
+    "writable-sdk": true,
     "metadata":"metadata.sdk",
     "cleanup":[
         "/cache",
@@ -18,6 +19,66 @@
     },
     "modules":[
         {
+                "name":"greenlet",
+                "buildsystem":"simple",
+                "build-options": {
+                        "env": {
+                                "PYTHON": "/usr/bin/python3"
+                        }
+                },
+                "build-commands":[
+                        "python3 ./setup.py install"
+                ],
+                "sources":[
+                        {
+                                "type":"archive",
+                                "url": "https://github.com/python-greenlet/greenlet/archive/0.4.12.tar.gz",
+                                "sha256": "07dfea90a16a27eae6fb8262994320b88905950d34ee2e9e45a6f18dd43e302e"
+                        }
+                ]
+
+        },
+        {
+                "name":"msgpack-python",
+                "buildsystem":"simple",
+                "build-options": {
+                        "env": {
+                                "PYTHON": "/usr/bin/python3"
+                        }
+                },
+                "build-commands":[
+                        "python3 ./setup.py install"
+                ],
+                "sources":[
+                        {
+                                "type":"archive",
+                                "url": "https://github.com/msgpack/msgpack-python/archive/0.4.8.tar.gz",
+                                "sha256": "b60a04916c609ad9a713d9c785b4a61f81728f264a8ae384faffc0d3aedd2029"
+                        }
+                ]
+
+        },
+        {
+                "name":"neovim-python-client",
+                "buildsystem":"simple",
+                "build-options": {
+                        "env": {
+                                "PYTHON": "/usr/bin/python3"
+                        }
+                },
+                "build-commands":[
+                        "python3 ./setup.py install"
+                ],
+                "sources":[
+                        {
+                                "type":"archive",
+                                "url": "https://github.com/neovim/python-client/archive/0.2.0.tar.gz",
+                                "sha256": "936b8c5a137436499328362da165f7ef16492a628d5a6d9f7b7f182c0200f8ab"
+                        }
+                ]
+
+        },
+        {
             "name": "vim",
             "buildsystem": "autotools",
             "config-opts":[
@@ -29,9 +90,7 @@
                 "--disable-netbeans",
                 "--enable-multibyte",
                 "--enable-cscope",
-                "--enable-pythoninterp=dynamic",
-                "--enable-python3interp=dynamic",
-                "--enable-rubyinterp=dynamic"
+                "--enable-python3interp=dynamic"
             ],
             "sources":[
                 {
